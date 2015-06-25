@@ -3,24 +3,20 @@
 	<title></title>
 </head>
 <body>
-	<a href="/mains/new"><button>Go Back</button></a>
-	<a href="/signout"><button>Logoff</button></a>
-	<table>		      	
-	   	<tr>
-			<th>Item</th>
-			<th>Amazon Price</th>
-			</tr>
-			<% @amazon.each do |item| %>
-				<tr>								
-					<td><a href="<%= item[3][0] %>"><%= item[0] %></a></td>
-					<td><%= item[1] %></td>
-					<% item[2].each do |image| %>
-					<td><a href="<%= item[3][0] %>"><img src="<%= image %>"></a></td>
-					<% end %>
+	<table>
+				<th>Item</th>
+				<th>Amazon Price</th>
 				</tr>
-			<% end %>
-		</table>
-
+				<% @amazon.each do |item| %>
+					<tr>					
+						
+						<td><a href="<%= item[3][0] %>"><%= item[0] %></a></td>
+						<td><%= item[1] %></td>
+							<% item[2].each do |image| %>
+								<td><a href="<%= item[3][0] %>"><img src="<%= image %>"></a></td>
+							<% end %>						
+					</tr>
+				<% end %>
 		
 		<table>		      	
 	   	<tr>
@@ -32,7 +28,7 @@
 					<tr>					
 						<td><%= item[0] %></td>
 						<td><%= item[1] %></td>
-						
+
 					</tr>
 				<% end %>
 		</table>
@@ -43,7 +39,7 @@
 				<th>Item</th>
 				<th>Walmart Price</th>
 				
-				</tr>
+		</tr>
 				<% @walmart.each do |item| %>
 					<tr>					
 						<td><a href="/<%= item[3] %>"><%= item[0] %></a></td>
@@ -53,6 +49,7 @@
 						<% end %>
 					</tr>
 				<% end %>
+				
 		</table>
 
 		<table>		      	
@@ -68,10 +65,13 @@
 						<% item[2].each do |image| %>
 						<td><img src="<%= image %>"></td>
 						<% end %>
+					
+
 					</tr>
-				<% end %>
+			<% end %>
 		</table>
 
+		
 
 </body>
 </html>
