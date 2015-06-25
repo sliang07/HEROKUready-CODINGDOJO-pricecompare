@@ -98,7 +98,7 @@ class MainsController < ApplicationController
 		  	end
 		end
 		
-		@walmart = walmart_dump.zip(walmart_price,walmart_image)
+		@walmart = walmart_dump.zip(walmart_price,walmart_image, walmart_link)
 
 		# BESTBUY
 		url = "http://www.bestbuy.com/site/searchpage.jsp?st=#{item_plus}&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&cp=1&nrp=15&sp=&qp=&list=n&iht=y&usc=All+Categories&ks=960&keys=keys"
