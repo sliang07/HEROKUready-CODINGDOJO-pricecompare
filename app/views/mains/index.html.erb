@@ -7,14 +7,13 @@
 	   	<tr>
 				<th>Item</th>
 				<th>Amazon Price</th>
-				
 				</tr>
 				<% @amazon.each do |item| %>
-					<tr>					
-						<td><%= item[0] %></td>
+					<tr>								
+						<td><a href="<%= item[3][0] %>"><%= item[0] %></a></td>
 						<td><%= item[1] %></td>
-						<% item[2].each do |item| %>
-						<td><img src="<%= item %>"></td>
+						<% item[2].each do |image| %>
+						<td><img src="<%= image %>"></td>
 						<% end %>
 
 					</tr>
@@ -46,9 +45,11 @@
 				</tr>
 				<% @walmart.each do |item| %>
 					<tr>					
-						<td><%= item[0] %></td>
+						<td><a href="/<%= item[3] %>"><%= item[0] %></a></td>
 						<td><%= item[1] %></td>
-						
+						<% item[2].each do |image| %>
+						<td><img src="<%= image %>"></td>
+						<% end %>
 					</tr>
 				<% end %>
 		</table>
@@ -63,7 +64,9 @@
 					<tr>					
 						<td><%= item[0] %></td>
 						<td><%= item[1] %></td>
-						
+						<% item[2].each do |image| %>
+						<td><img src="<%= image %>"></td>
+						<% end %>
 					</tr>
 				<% end %>
 		</table>
