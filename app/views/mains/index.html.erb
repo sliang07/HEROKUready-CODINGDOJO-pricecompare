@@ -4,6 +4,8 @@
 </head>
 <body>
 	<table>
+			<!-- Amazon -->
+				<tr>
 				<th>Item</th>
 				<th>Amazon Price</th>
 				</tr>
@@ -18,22 +20,7 @@
 					</tr>
 				<% end %>
 		
-		<table>		      	
-	   	<tr>
-				<th>Item</th>
-				<th>Craigslist Price</th>
-				
-				</tr>
-				<% @craigslist.each do |item| %>
-					<tr>					
-						<td><%= item[0] %></td>
-						<td><%= item[1] %></td>
-
-					</tr>
-				<% end %>
-		</table>
-
-
+			<!-- Walmart -->
 		<table>		      	
 	   	<tr>
 				<th>Item</th>
@@ -42,16 +29,17 @@
 		</tr>
 				<% @walmart.each do |item| %>
 					<tr>					
-						<td><a href="www.walmart.com<%= item[3] %>"><%= item[0] %></a></td>
+						<td><a href="http://www.walmart.com<%= item[3][0]%>"><%= item[0] %></a></td>
 						<td><%= item[1] %></td>
 						<% item[2].each do |image| %>
-						<td><img src="<%= image %>"></td>
-						<% end %>
+								<td><a href="http://www.walmart.com<%= item[3][0] %>"><img src="<%= image %>"></a></td>
+							<% end %>
 					</tr>
 				<% end %>
 				
 		</table>
 
+			<!-- Bestbuy -->
 		<table>		      	
 	   	<tr>
 				<th>Item</th>
@@ -60,16 +48,81 @@
 				</tr>
 				<% @bestbuy.each do |item| %>
 					<tr>					
-						<td><%= item[0] %></td>
+						<td><a href="http://www.bestbuy.com<%= item[3][0]%>"><%= item[0] %></a></td>
 						<td><%= item[1] %></td>
 						<% item[2].each do |image| %>
-						<td><img src="<%= image %>"></td>
-						<% end %>
+								<td><a href="http://www.bestbuy.com<%= item[3][0] %>"><img src="<%= image %>"></a></td>
+							<% end %>
 					
 
 					</tr>
 			<% end %>
 		</table>
+
+		
+
+		<!-- Newegg -->
+		<table>		      	
+	   	<tr>
+				<th>Item</th>
+				<th>Newegg Price</th>
+				
+				</tr>
+				<% @newegg.each do |item| %>
+					<tr>					
+						<td><a href="<%= item[3][0]%>"><%= item[0] %></a></td>
+						<td><%= item[1] %></td>
+						<% item[2].each do |image| %>
+								<td><a href="<%= item[3][0] %>"><img src="<%= image %>"></a></td>
+							<% end %>
+					
+
+					</tr>
+			<% end %>
+		</table>
+
+
+			<!-- Target -->
+		<table>		      	
+	   	<tr>
+				<th>Item</th>
+				<th>Target Price</th>
+				
+				</tr>
+				<% @target.each do |item| %>
+					<tr>					
+						<td><a href="<%= item[3][0]%>"><%= item[0] %></a></td>
+						<td><%= item[1] %></td>
+						<% item[2].each do |image| %>
+								<td><a href="<%= item[3][0] %>"><img src="<%= image %>"></a></td>
+							<% end %>
+					
+
+					</tr>
+			<% end %>
+		</table>
+
+
+			<!-- Frys -->
+		<table>		      	
+	   	<tr>
+				<th>Item</th>
+				<th>Frys Price</th>
+				
+				</tr>
+				<% @frys.each do |item| %>
+					<tr>					
+						<td><a href="<%= item[3][0]%>"><%= item[0] %></a></td>
+						<td><%= item[1] %></td>
+						<% item[2].each do |image| %>
+								<td><a href="<%= item[3][0] %>"><img src="<%= image %>"></a></td>
+							<% end %>
+					
+
+					</tr>
+			<% end %>
+		</table>
+	
 
 		
 
