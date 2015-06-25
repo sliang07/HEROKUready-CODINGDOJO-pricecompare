@@ -1,0 +1,16 @@
+<h2>Login</h2> 
+
+<form action='/sessions' method='post'>
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <p>Email:<input type="text" name="session[email]"></p>
+  <p>Password:<input type="password" name='session[password]'/></p>
+  <p><input type='submit' value='Login' /></p>
+</form>
+<a href="/"><button>Go Back</button></a>
+<% if flash[:error] %>
+<ul>
+	<% flash[:error].each do |t| %> 
+	<li><%= t %></li>
+	<% end %>
+</ul>
+<% end %>

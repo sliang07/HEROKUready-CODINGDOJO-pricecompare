@@ -2,11 +2,16 @@ require "open-uri"
 
 class MainsController < ApplicationController
 	def new
+		if signed_in? == false
+			deny_access
+		else
 		render '/mains/new'
+		end
 	end
 	def create
 		item = params[:search_key]
-
+		@search = Search.new({item})
+		if @search.save
 		url = "http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=#{item}"
 			dump = Array.new
 			price = Array.new
@@ -87,5 +92,8 @@ class MainsController < ApplicationController
 		@bestbuy = dump.zip(price, image)
 			render '/mains/index'
 	end
-
+	else
+		flash[:error] = @user.errors.full_messages
+		redirect_to new_main_path
+	end
 end
