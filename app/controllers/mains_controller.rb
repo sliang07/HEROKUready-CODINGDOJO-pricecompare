@@ -108,20 +108,24 @@ class MainsController < ApplicationController
 		bestbuy_link = Array.new
 
 		bestbuy_page = Nokogiri::HTML(open(url))
-		bestbuy_page.css(".list-item-info").each do |item|
-			# if bestbuy_dump.length < 5
+		bestbuy_page.css(".list-item").each do |item|
+			if bestbuy_image.length < 5
+				bestbuy_image.push(item.css('.thumb img').map { |img| img['src'] })
+			end
+
+			if bestbuy_dump.length < 5
 				bestbuy_dump.push(item.at_css('.sku-title').text)
-			# end
+			end
 			if item.at_css('.medium-item-price').nil?
-				bestbuy_price.push(item.at_css('N/A'))
+			bestbuy_dump.pop()
 			else
-				# if bestbuy_price.length < 5
+				if bestbuy_price.length < 5
 		  			bestbuy_price.push(item.at_css('.medium-item-price').text)
-		  		# end
+		  		end
 		  	end
 		end
 		
-		@bestbuy = bestbuy_dump.zip(bestbuy_price)
+		@bestbuy = bestbuy_dump.zip(bestbuy_price, bestbuy_image)
 			render '/mains/index'
 	end
 
