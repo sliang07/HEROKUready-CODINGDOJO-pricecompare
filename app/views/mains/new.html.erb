@@ -4,11 +4,12 @@
 </head>
 <body>
 	<h3>What are you looking for ?</h3>
-			<%= form_tag("/mains", method: "post") do %>
-			  <%= label_tag(:search_key, "I am looking for:") %>
-			  <%= text_field_tag(:search_key) %>
-			  <%= submit_tag("Find") %>
-			<% end %>
+	<form action='/mains' method='post'>
+	  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	  <p>I am looking for:<input type='text' name='user[search_key]'></p>
+	  <input type="hidden" name="user[user_id]" value="<%= session[:user_id]%>"> 
+	  <p><input type='submit' value='Search' /></p>
+	</form>
 		<a href="/signout"><button>Logoff</button></a>
 <% if flash[:error] %>
 <ul>

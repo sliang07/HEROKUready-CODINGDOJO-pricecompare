@@ -11,9 +11,10 @@ class MainsController < ApplicationController
 		end
 	end
 	def create		
-		@search_key = params[:search_key]		
-			item_plus = params[:search_key]
-			item_underscore = params[:search_key]
+		@search = Search.new(search_params)
+		if @search.save		
+			item_plus = search_params[:search_key]
+			item_underscore = search_params[:search_key]
 			i = 0
 			for i in 0..item_plus.length
 				if item_plus[i] == " "
@@ -130,10 +131,14 @@ class MainsController < ApplicationController
 		
 		@bestbuy = bestbuy_dump.zip(bestbuy_price, bestbuy_image)
 			render '/mains/index'
-	end
 	else
-		flash[:error] = @user.errors.full_messages
+		flash[:error] = @search.errors.full_messages
 		redirect_to new_main_path
+	end
+	end
+	private
+	def search_params
+		params.require(:user).permit(:search_key, :user_id)
 	end
 end
 

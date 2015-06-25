@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625171559) do
+ActiveRecord::Schema.define(version: 20150625223318) do
 
   create_table "searches", force: true do |t|
     t.integer  "user_id"
-    t.string   "searched_term"
+    t.string   "search_key"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
