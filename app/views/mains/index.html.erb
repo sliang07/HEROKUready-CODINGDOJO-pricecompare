@@ -6,14 +6,17 @@
 	<table>		      	
 	   	<tr>
 				<th>Item</th>
-				<th>Amazonaasfafs Price</th>
+				<th>Amazon Price</th>
 				
 				</tr>
 				<% @amazon.each do |item| %>
 					<tr>					
-						<td><input type = 'hidden' name = 'item' value = "<%= item[0] %>" /><%= item[0] %></td>
-						<td><input type = 'hidden' name = 'price' value = "<%= item[1] %>" /><%= item[1] %></td>
-						
+						<td><%= item[0] %></td>
+						<td><%= item[1] %></td>
+						<% item[2].each do |item| %>
+						<td><img src="<%= item %>"></td>
+						<% end %>
+
 					</tr>
 				<% end %>
 		</table>
@@ -27,8 +30,8 @@
 				</tr>
 				<% @craigslist.each do |item| %>
 					<tr>					
-						<td><input type = 'hidden' name = 'item' value = "<%= item[0] %>" /><%= item[0] %></td>
-						<td><input type = 'hidden' name = 'price' value = "<%= item[1] %>" /><%= item[1] %></td>
+						<td><%= item[0] %></td>
+						<td><%= item[1] %></td>
 						
 					</tr>
 				<% end %>
@@ -43,8 +46,8 @@
 				</tr>
 				<% @walmart.each do |item| %>
 					<tr>					
-						<td><input type = 'hidden' name = 'item' value = "<%= item[0] %>" /><%= item[0] %></td>
-						<td><input type = 'hidden' name = 'price' value = "<%= item[1] %>" /><%= item[1] %></td>
+						<td><%= item[0] %></td>
+						<td><%= item[1] %></td>
 						
 					</tr>
 				<% end %>
@@ -58,8 +61,8 @@
 				</tr>
 				<% @bestbuy.each do |item| %>
 					<tr>					
-						<td><input type = 'hidden' name = 'item' value = "<%= item[0] %>" /><%= item[0] %></td>
-						<td><input type = 'hidden' name = 'price' value = "<%= item[1] %>" /><%= item[1] %></td>
+						<td><%= item[0] %></td>
+						<td><%= item[1] %></td>
 						
 					</tr>
 				<% end %>
