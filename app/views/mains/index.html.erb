@@ -3,67 +3,20 @@
 	<title></title>
 </head>
 <body>
-	<table >
-		<thead>
-			<th>Site</th>
-			<th>Item Name</th>
-			<th>Lowest Price</th>
-			<th>Image</th>
-			
-		</thead>
-			<!-- Walmart -->
-			<tr>
-				
-					<td>Wallmart</td>
-					<td><input type = 'hidden' value = '<%=  @walmart_item_lowest_title %>' name = 'item' /><a href="<%= "http://www.wallmart.com/"+@walmart_image_link %>"><%=  @walmart_item_lowest_title %></a></td>
-					<td><input type = 'hidden' value = '<%=   @walmart_item_lowest_price %>' name = 'price' /><%=  @walmart_item_lowest_price %></td>
-					<td><img src="<%= @walmart_lowest_item_img %>"></td>
-				
-			</tr>
-				<!-- Craigslist -->
-			<tr>
-				
-					<td>Craigslist</td>
-					<td><input type = 'hidden' value = '<%=  @craigslist_item_lowest_title %>' name = 'item' />			
-						<a href="<%= "http://seattle.craigslist.org/"+@craigslist_image_link %>"><%=  @craigslist_item_lowest_title %></a></td>
-					<td><input type = 'hidden' value = '<%=   @craigslist_item_lowest_price %>' name = 'price' /><%=  @craigslist_item_lowest_price %></td>
-					<td><img src="<%= @craigslist_lowest_item_img %>"></td>
-				
-			</tr>
-	</table>
-	<table>		      	
-	   	<tr>
-<<<<<<< HEAD
+	<table>
 				<th>Item</th>
 				<th>Amazon Price</th>
 				</tr>
 				<% @amazon.each do |item| %>
 					<tr>					
 						
-						<td><%= item[0] %></td>
+						<td><a href="<%= item[3][0] %>"><%= item[0] %></a></td>
 						<td><%= item[1] %></td>
-						<% item[2].each do |item| %>
-						<td><img src="<%= item %>"></td>
-						<% end %>
-						
+							<% item[2].each do |image| %>
+								<td><a href="<%= item[3][0] %>"><img src="<%= image %>"></a></td>
+							<% end %>						
 					</tr>
 				<% end %>
-=======
-			<th>Item</th>
-			<th>Amazon Price</th>
-			</tr>
-			<% @amazon.each do |item| %>
-				<tr>								
-					<td><a href="<%= item[3][0] %>"><%= item[0] %></a></td>
-					<td><%= item[1] %></td>
-					<% item[2].each do |image| %>
-					<td><a href="<%= item[3][0] %>"><img src="<%= image %>"></a></td>
-					<% end %>
-				</tr>
-			<% end %>
->>>>>>> 037035089794beb00785c7939e3d26aed3ee87b3
-		</table>
-
 		
 		<table>		      	
 	   	<tr>
@@ -75,10 +28,7 @@
 					<tr>					
 						<td><%= item[0] %></td>
 						<td><%= item[1] %></td>
-<<<<<<< HEAD
-=======
-						
->>>>>>> 037035089794beb00785c7939e3d26aed3ee87b3
+
 					</tr>
 				<% end %>
 		</table>
@@ -89,21 +39,17 @@
 				<th>Item</th>
 				<th>Walmart Price</th>
 				
-				</tr>
+		</tr>
 				<% @walmart.each do |item| %>
 					<tr>					
-<<<<<<< HEAD
-						<td><%= item[0] %></td>
-						<td><%= item[1] %></td>
-=======
 						<td><a href="/<%= item[3] %>"><%= item[0] %></a></td>
 						<td><%= item[1] %></td>
 						<% item[2].each do |image| %>
 						<td><img src="<%= image %>"></td>
 						<% end %>
->>>>>>> 037035089794beb00785c7939e3d26aed3ee87b3
 					</tr>
 				<% end %>
+				
 		</table>
 
 		<table>		      	
@@ -116,14 +62,11 @@
 					<tr>					
 						<td><%= item[0] %></td>
 						<td><%= item[1] %></td>
-<<<<<<< HEAD
-=======
-						<% item[2].each do |image| %>
-						<td><img src="<%= image %>"></td>
+
 						<% end %>
->>>>>>> 037035089794beb00785c7939e3d26aed3ee87b3
+
 					</tr>
-				<% end %>
+		
 		</table>
 
 		
