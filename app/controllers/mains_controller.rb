@@ -7,7 +7,7 @@ class MainsController < ApplicationController
 	def create
 		item = params[:search_key]
 
-		url = "http://www.amazon.com/s/url=search-alias%3Daps&field-keywords=#{item}"
+		url = "http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=#{item}"
 			dump = Array.new
 			price = Array.new
 			image = Array.new

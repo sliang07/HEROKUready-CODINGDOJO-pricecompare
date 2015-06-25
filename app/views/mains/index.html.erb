@@ -5,19 +5,18 @@
 <body>
 	<table>		      	
 	   	<tr>
-				<th>Item</th>
-				<th>Amazon Price</th>
+			<th>Item</th>
+			<th>Amazon Price</th>
+			</tr>
+			<% @amazon.each do |item| %>
+				<tr>								
+					<td><a href="<%= item[3][0] %>"><%= item[0] %></a></td>
+					<td><%= item[1] %></td>
+					<% item[2].each do |image| %>
+					<td><a href="<%= item[3][0] %>"><img src="<%= image %>"></a></td>
+					<% end %>
 				</tr>
-				<% @amazon.each do |item| %>
-					<tr>								
-						<td><a href="<%= item[3][0] %>"><%= item[0] %></a></td>
-						<td><%= item[1] %></td>
-						<% item[2].each do |image| %>
-						<td><img src="<%= image %>"></td>
-						<% end %>
-
-					</tr>
-				<% end %>
+			<% end %>
 		</table>
 
 		
