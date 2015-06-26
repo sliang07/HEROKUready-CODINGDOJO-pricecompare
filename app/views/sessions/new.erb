@@ -9,8 +9,6 @@
 <a href="/"><button>Go Back</button></a>
 <% if flash[:error] %>
 <ul>
-	<% flash[:error].each do |t| %> 
-	<li><%= t %></li>
-	<% end %>
+	<li><%= flash[:error] %></li>
 </ul>
 <% end %>

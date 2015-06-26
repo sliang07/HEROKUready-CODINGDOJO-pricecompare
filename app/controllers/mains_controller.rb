@@ -6,13 +6,16 @@ class MainsController < ApplicationController
 	def new
 		if signed_in? == false
 			deny_access
-		else
-		render '/mains/new'
 		end
+		@searchedhistory = Search.all.where(user_id: session[:user_id])
 	end
 	def create		
 		@search = Search.new(search_params)
-		if @search.save		
+		if @search.save
+			totalsearches = Search.all.where(user_id: session[:user_id]).count
+			if totalsearches == 6
+				Search.all.where(user_id: session[:user_id]).first.destroy
+			end
 			item_plus = search_params[:search_key]
 			item_underscore = search_params[:search_key]
 			i = 0

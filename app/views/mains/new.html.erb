@@ -18,5 +18,11 @@
 	<% end %>
 </ul>
 <% end %>
+<h2>Recent searches:</h2>
+<ul>
+<% @searchedhistory.each do |t| %>
+<li><%= t.search_key %></li>
+<% end %>
+</ul>
 </body>
 </html>
