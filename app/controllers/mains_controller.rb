@@ -28,17 +28,19 @@ class MainsController < ApplicationController
 			end
 
 			# AMAZON
-		url = "http://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=#{item_plus}"
+		url = "http://www.amazon.com/s/field-keywords=#{item_plus}"
+
 		amazon_dump = Array.new
 		amazon_price = Array.new
 		amazon_image = Array.new
 		amazon_link = Array.new
-
+		amazon_rating = Array.new
 
 		amazon_page = Nokogiri::HTML(open(url))
 		amazon_search_result = amazon_page.css('.s-result-item')
 
-		amazon_search_result.each do |item|		
+		amazon_search_result.each do |item|
+			amazon_rating.push(item.css('.a-popover-trigger.a-declarative span').text)		
 			amazon_link.push(item.css('.a-row.a-spacing-none a').map {|a| a['href']})
 				if amazon_image.length < 5
 					amazon_image.push(item.css('a.a-link-normal.a-text-normal img').map { |img| img['src'] })
@@ -54,32 +56,9 @@ class MainsController < ApplicationController
 					end
 				end
 			end
-		@amazon = amazon_dump.zip(amazon_price,	amazon_image,amazon_link)
+		@amazon = amazon_dump.zip(amazon_price,	amazon_image, amazon_link, amazon_rating)
 
-		# CRAIGSLIST
-		url = "http://seattle.craigslist.org/search/sss?query=#{item_underscore}&sort=rel"
-		craigslist_dump = Array.new
-		craigslist_price = Array.new
-		craigslist_image = Array.new
-		craigslist_link = Array.new
-
-		craigslist_page = Nokogiri::HTML(open(url))
-		craigslist_search_result = craigslist_page.css(".row")
-		craigslist_search_result.each do |item|
-			if craigslist_dump.length < 5
-				craigslist_dump.push(item.at_css('.hdrlnk').text.strip)
-			end
-			if item.at_css('.l2 .price').nil?
-				craigslist_dump.pop()
-			else
-				if craigslist_price.length < 5
-		  			craigslist_price.push(item.at_css('.l2 .price').text.strip)
-		  		end
-			end
-		  
-		end
-
-		@craigslist = craigslist_dump.zip(craigslist_price)
+		
 
 		# WALMART
 		url = "http://www.walmart.com/search/search-ng.do?search_constraint=0&ic=48_0&search_query=#{item_underscore}&Find.x=0&Find.y=0&Find=Find"
@@ -87,9 +66,12 @@ class MainsController < ApplicationController
 		walmart_price = Array.new
 		walmart_image = Array.new
 		walmart_link = Array.new
+		walmart_rating = Array.new
 
 		walmart_page = Nokogiri::HTML(open(url))
 		walmart_page.css(".js-tile.tile-landscape").each do |item|
+			walmart_rating.push(item.css('.js-reviews').text)
+			walmart_link.push(item.css('h4.tile-heading a').map {|a| a['href']})
 			if walmart_image.length < 5
 				walmart_image.push(item.css('.js-product-image img').map { |img| img['data-default-image'] })
 			end
@@ -105,7 +87,7 @@ class MainsController < ApplicationController
 		  	end
 		end
 		
-		@walmart = walmart_dump.zip(walmart_price,walmart_image, walmart_link)
+		@walmart = walmart_dump.zip(walmart_price,walmart_image, walmart_link, walmart_rating)
 
 		# BESTBUY
 		url = "http://www.bestbuy.com/site/searchpage.jsp?st=#{item_plus}&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&cp=1&nrp=15&sp=&qp=&list=n&iht=y&usc=All+Categories&ks=960&keys=keys"
@@ -113,9 +95,12 @@ class MainsController < ApplicationController
 		bestbuy_price = Array.new
 		bestbuy_image = Array.new
 		bestbuy_link = Array.new
+		bestbuy_rating = Array.new
 
 		bestbuy_page = Nokogiri::HTML(open(url))
 		bestbuy_page.css(".list-item").each do |item|
+			bestbuy_rating.push(item.css('.average-score').text)
+			bestbuy_link.push(item.css('.sku-title h4 a').map {|a| a['href']})
 			if bestbuy_image.length < 5
 				bestbuy_image.push(item.css('.thumb img').map { |img| img['src'] })
 			end
@@ -132,7 +117,67 @@ class MainsController < ApplicationController
 		  	end
 		end
 		
-		@bestbuy = bestbuy_dump.zip(bestbuy_price, bestbuy_image)
+		@bestbuy = bestbuy_dump.zip(bestbuy_price, bestbuy_image, bestbuy_link, bestbuy_rating)
+
+		# TARGET
+		url = "http://www.target.com/s?searchTerm=#{item_plus}&category=0%7CAll%7Cmatchallpartial%7Call+categories&lnk=snav_sbox_#{item_plus}"
+		target_dump = Array.new
+		target_price = Array.new
+		target_image = Array.new
+		target_link = Array.new
+		target_rating = Array.new
+
+		target_page = Nokogiri::HTML(open(url))
+		target_page.css(".tile.standard").each do |item|
+			target_rating.push(item.css('span.rating-count').text)
+			target_link.push(item.css('.tileImage a').map {|a| a['href']})
+			if target_image.length < 5
+				target_image.push(item.css('.tileImage').map { |img| img['src'] })
+			end
+
+			if target_dump.length < 5
+				target_dump.push(item.css('.productClick.productTitle').text)
+			end
+			if item.at_css('.price.price-label').nil?
+			target_dump.pop()
+			else
+				if target_price.length < 5
+		  			target_price.push(item.css('p.price.price-label').text)
+		  		end
+		  	end
+		end
+		
+		@target = target_dump.zip(target_price, target_image,target_link, target_rating)
+
+		# NEWEGG
+		url = "http://www.newegg.com/Product/ProductList.aspx?Submit=ENE&DEPA=0&Order=BESTMATCH&Description=#{item_underscore}&N=-1&isNodeId=1"
+		newegg_dump = Array.new
+		newegg_price = Array.new
+		newegg_image = Array.new
+		newegg_link = Array.new
+		newegg_rating = Array.new
+
+		newegg_page = Nokogiri::HTML(open(url))
+		newegg_page.css(".itemCell").each do |item|
+			newegg_rating.push(item.css('.itemRating').map {|a| a['title']})
+			newegg_link.push(item.css('.wrapper a').map {|a| a['href']})
+			if newegg_image	.length < 5
+				newegg_image.push(item.css('.itemImage img').map { |img| img['src'] })
+			end
+
+			if newegg_dump.length < 5
+				newegg_dump.push(item.at_css('.itemDescription').text)
+			end
+			if item.at_css('.price-current').nil?
+			newegg_dump.pop()
+			else
+				if newegg_price.length < 5
+		  			newegg_price.push(item.at_css('.price-current').text)
+		  		end
+		  	end
+		end
+		
+		@newegg = newegg_dump.zip(newegg_price, newegg_image,newegg_link, newegg_rating)
 			render '/mains/index'
 	else
 		flash[:error] = @search.errors.full_messages
