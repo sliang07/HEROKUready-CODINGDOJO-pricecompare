@@ -45,3 +45,5 @@ gem 'rails-footnotes', '>= 4.0.0', '<5'
 gem 'nokogiri'
 
 gem 'simple_form'
+
+gem "font-awesome-rails"

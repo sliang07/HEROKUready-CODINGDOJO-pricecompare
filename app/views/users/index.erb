@@ -1,7 +1,10 @@
 <h1> Welcome to PriceCompare! </h1>
-<h3>Please Register or Login </h3>
+<fieldset>
+	<legend>Please Register or Login </legend>
 
-<a href="/users/new"><button>Register</button></a>
-<a href="/sessions/new"><button>Login</button></a>
-
-<p><%= notice %></p>
+	    <a class="btn btn-warning" href="/users/new">
+	      <i class=" fa fa-rocket"></i>Register</a>
+	    <a class="btn btn-info" href="/sessions/new">
+	      <i class=" fa fa-space-shuttle"></i>Login</a>
+	<p><%= notice %></p>
+</fieldset>
