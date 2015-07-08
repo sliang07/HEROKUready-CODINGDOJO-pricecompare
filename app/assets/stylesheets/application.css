@@ -15,33 +15,58 @@
  *= require_bootstrap
  *= require font-awesome
  */
- #container{
- 	margin: 0 auto;
- 	width: 50%;
- }
-body{
-	background-image: url("pricecomparewallpaper.jpg");
-	background-size: cover;
-	background-attachment: fixed;
+#container{
+	margin: 0 auto;
+	width: 50%;
 }
-
+.welcome{
+    color: ghostwhite;
+}
+#title{
+    font-size: 50px;
+    font-weight: 500;
+}
+#subtitle{
+    font-size: 30px;
+    font-weight: 100;
+}
+.background{
+    background-image: url("search_paper.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+.row{
+    display: inline-block;
+}
+#index{
+    text-align: center;
+    margin-top: 40%;
+}
+#login{
+    color: tan;
+    display: inline-block;
+}
+#goback{
+    display: inline-block;
+    margin: 0;
+    margin-left: 50%;
+}
+#mainrocket{
+    font-size: 25px;
+}
+#mainshuttle{
+    font-size: 25px;
+}
 /*fieldset legends start*/
 fieldset {
-    border: 3px groove #ddd !important;
+    width: 300px;
+    text-align: center;
+    border: 3px groove #eee !important;
     padding: 0 1.4em 1.4em 1.4em !important;
     margin: 0 0 1.5em 0 !important;
     -webkit-box-shadow:  0px 0px 0px 0px #000;
             box-shadow:  0px 0px 0px 0px #000;
     background-color: white;
-}
-
-legend  {
-    font-size: 1.2em !important;
-    font-weight: bold !important;
-    text-align: left !important;
-    width:inherit; /* Or auto */
-    padding:0 10px; /* To give a bit of padding on the left and right */
-    border-bottom:none;
 }
 
 /*fieldset legend end*/

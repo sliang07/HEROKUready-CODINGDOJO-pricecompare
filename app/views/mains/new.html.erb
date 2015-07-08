@@ -3,18 +3,18 @@
 	<title></title>
 </head>
 <body>
-	<h3>What are you looking for ?</h3>
+	<h3 id="search-heading">What are you looking for ?</h3>
+	<a class="btn btn-danger" href="/signout">
+			<i class="fa fa-trash-o fa-lg"></i>Logoff</a>
 	<div class="inner-addon left-addon">
 		<form action='/mains' method='post'>
 		  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 		  <i class="glyphicon glyphicon-hand-right"></i>
 		  <p><input type='text' name='user[search_key]' class="form-control" placeholder="I am looking for..."></p>
 		  <input type="hidden" name="user[user_id]" value="<%= session[:user_id]%>">
-		  <p><input type='submit' value='&#xf002; Search' class="btn fa-input" /></p>
+		  <p><input type='submit' value='&#xf002; Search' class="btn fa-input" id="search" /></p>
 		</form>
 	</div>
-		<a class="btn btn-danger" href="/signout">
-			<i class="fa fa-trash-o fa-lg"></i>Logoff</a>
 <% if flash[:error] %>
 <ul>
 	<% flash[:error].each do |t| %> 

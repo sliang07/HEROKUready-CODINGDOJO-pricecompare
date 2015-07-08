@@ -3,10 +3,10 @@
 		<title>Compare Prices!</title>
 	</head>
 	<body>
-		<a class="btn btn-primary" href="/mains/new">
-			<i class=" fa fa-arrow-left"></i>Go Back</a>
-		<a class="btn btn-danger" href="/signout">
-			<i class="fa fa-trash-o fa-lg"></i>Logoff</a>
+			<a class="btn btn-primary" href="/mains/new">
+				<i class=" fa fa-arrow-left"></i>Go Back</a>
+			<a class="btn btn-danger" href="/signout">
+				<i class="fa fa-trash-o fa-lg"></i>Logoff</a>
 			<!-- Amazon -->
 			<table>				
 				<tr>
@@ -52,8 +52,8 @@
 					<th>Walmart Price</th>
 					<th>Walmart Rating</th>
 				</tr>
-				<% @walmart.each do |item| %>
-				<tr>					
+				<% @walmart.each do |item| %>		
+				<tr>
 					<% item[2].each do |image| %>
 					<td><a href="http://www.walmart.com<%= item[3][0] %>"><img src="<%= image %>"></a></td>
 					<% end %>
@@ -76,7 +76,7 @@
 					<% end %>
 					<% end %>
 				</tr>
-				<% end %>				
+				<% end %>
 			</table>
 			<!-- Bestbuy -->
 			<table>		      	

@@ -1,12 +1,16 @@
 // Place all the styles related to the mains controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-
-	.form-control{
-		width: 200px;
-	}
-
+.form-control{
+	width: 200px;
+}
+img{
+  margin: 10px;
+}
+a{
+  font-weight: 700;
+  font-size: 20px;
+}
 /* enable absolute positioning */
 .inner-addon { 
     position: relative; 
@@ -30,17 +34,31 @@
 /* font-awesome input for search*/
 .fa-input {
   font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: #66FF66;
+  background: #3333CC;
   color: white;
   padding-right: 30px;
 }
 /* font-awesome input for login */
 .fa-input1 {
   font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: #66FF66;
+  background: #3333CC;
   color: white;
   padding-left: 42px;
   padding-right: 42px;
+}
+.form-control{
+  display: inline-block;
+  margin: 0;
+}
+p{
+  display: inline-block;
+}
+#search-heading{
+  display: inline-block;
+  margin-right: 200px;
+}
+#search{
+  display: inline-block;
 }
 /* gives icon some space */
 .fa{
