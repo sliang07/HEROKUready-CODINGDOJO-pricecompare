@@ -40,18 +40,18 @@ class MainsController < ApplicationController
 		amazon_search_result = amazon_page.css('.s-result-item')
 
 		amazon_search_result.each do |item|
-			amazon_rating.push(item.css('.a-popover-trigger.a-declarative span').text)		
+			amazon_rating.push(item.css('.a-popover-trigger.a-declarative span').text)
 			amazon_link.push(item.css('.a-row.a-spacing-none a').map {|a| a['href']})
-				if amazon_image.length < 5
+				if amazon_image.length < 6
 					amazon_image.push(item.css('a.a-link-normal.a-text-normal img').map { |img| img['src'] })
 				end
-				if amazon_dump.length < 5
+				if amazon_dump.length < 6
 					amazon_dump.push(item.css(".a-size-medium.s-inline.s-access-title.a-text-normal").text)
 				end
 				if item.css('.a-size-base.a-color-price.s-price.a-text-bold').nil?
 					amazon_dump.pop()
 				else
-					if amazon_price.length < 5
+					if amazon_price.length < 6
 						amazon_price.push(item.css('.a-size-base.a-color-price.s-price.a-text-bold').text)
 					end
 				end
@@ -72,16 +72,16 @@ class MainsController < ApplicationController
 		walmart_page.css(".js-tile.tile-landscape").each do |item|
 			walmart_rating.push(item.css('.js-reviews').text)
 			walmart_link.push(item.css('h4.tile-heading a').map {|a| a['href']})
-			if walmart_image.length < 5
+			if walmart_image.length < 6
 				walmart_image.push(item.css('.js-product-image img').map { |img| img['data-default-image'] })
 			end
-			if walmart_dump.length < 5
+			if walmart_dump.length < 6
 			walmart_dump.push(item.at_css('.js-product-title').text)
 			end	
 			if item.at_css('.price-display').nil?
 				walmart_dump.pop()
 			else
-				if walmart_price.length < 5
+				if walmart_price.length < 6
 		  		walmart_price.push(item.at_css('.price-display').text)
 		  		end
 		  	end
@@ -101,17 +101,17 @@ class MainsController < ApplicationController
 		bestbuy_page.css(".list-item").each do |item|
 			bestbuy_rating.push(item.css('.average-score').text)
 			bestbuy_link.push(item.css('.sku-title h4 a').map {|a| a['href']})
-			if bestbuy_image.length < 5
+			if bestbuy_image.length < 6
 				bestbuy_image.push(item.css('.thumb img').map { |img| img['src'] })
 			end
 
-			if bestbuy_dump.length < 5
+			if bestbuy_dump.length < 6
 				bestbuy_dump.push(item.at_css('.sku-title').text)
 			end
 			if item.at_css('.medium-item-price').nil?
 			bestbuy_dump.pop()
 			else
-				if bestbuy_price.length < 5
+				if bestbuy_price.length < 6
 		  			bestbuy_price.push(item.at_css('.medium-item-price').text)
 		  		end
 		  	end
@@ -130,24 +130,24 @@ class MainsController < ApplicationController
 		target_page = Nokogiri::HTML(open(url))
 		target_page.css(".tile.standard").each do |item|
 			target_rating.push(item.css('span.rating-count').text)
-			target_link.push(item.css('.tileImage a').map {|a| a['href']})
-			if target_image.length < 5
+			target_link.push(item.css('.productClick.productTitle').map {|a| a['href']})
+			if target_image.length < 6
 				target_image.push(item.css('.tileImage').map { |img| img['src'] })
 			end
 
-			if target_dump.length < 5
+			if target_dump.length < 6
 				target_dump.push(item.css('.productClick.productTitle').text)
 			end
 			if item.at_css('.price.price-label').nil?
 			target_dump.pop()
 			else
-				if target_price.length < 5
+				if target_price.length < 6
 		  			target_price.push(item.css('p.price.price-label').text)
 		  		end
 		  	end
 		end
 		
-		@target = target_dump.zip(target_price, target_image,target_link, target_rating)
+		@target = target_dump.zip(target_price, target_image, target_link, target_rating)
 
 		# NEWEGG
 		url = "http://www.newegg.com/Product/ProductList.aspx?Submit=ENE&DEPA=0&Order=BESTMATCH&Description=#{item_underscore}&N=-1&isNodeId=1"
@@ -161,17 +161,17 @@ class MainsController < ApplicationController
 		newegg_page.css(".itemCell").each do |item|
 			newegg_rating.push(item.css('.itemRating').map {|a| a['title']})
 			newegg_link.push(item.css('.wrapper a').map {|a| a['href']})
-			if newegg_image	.length < 5
+			if newegg_image	.length < 6
 				newegg_image.push(item.css('.itemImage img').map { |img| img['src'] })
 			end
 
-			if newegg_dump.length < 5
+			if newegg_dump.length < 6
 				newegg_dump.push(item.at_css('.itemDescription').text)
 			end
 			if item.at_css('.price-current').nil?
 			newegg_dump.pop()
 			else
-				if newegg_price.length < 5
+				if newegg_price.length < 6
 		  			newegg_price.push(item.at_css('.price-current').text)
 		  		end
 		  	end

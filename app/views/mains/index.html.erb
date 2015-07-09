@@ -8,178 +8,157 @@
 			<a class="btn btn-danger" href="/signout">
 				<i class="fa fa-trash-o fa-lg"></i>Logoff</a>
 			<!-- Amazon -->
-			<table>				
-				<tr>
-					<th></th>
-					<th>Item</th>
-					<th>Amazon Price</th>
-					<th>Amazon Rating</th>
-				</tr>
+			<h2 class="store-title">Amazon</h2>
+			<div class="row">
 				<% @amazon.each do |item| %>
-				<tr>											
+				<div class="col-md-4">
 					<% item[2].each do |image| %>
-					<td><a href="<%= item[3][0] %>"><img src="<%= image %>"></a></td>
+					<a href="<%= item[3][0] %>"><img src="<%= image %>"></a>
 					<% end %>						
-					<td><a href="<%= item[3][0] %>"><%= item[0] %></a></td>
-					<td><%= item[1] %></td>
+					<a class="itemtitle" href="<%= item[3][0] %>"><%= item[0].truncate(40, separator: ' ') %></a><br>
+					<% if item[1].blank? %>
+						<span class="price">Used</span>
+					<% else %>
+						<span class="price"><%= item[1] %></span>
+					<% end %>
 					<% if item[4].blank? %>
-					<td><img src="/images/0star.png">No Ratings</td>
+					<img src="/images/0star.png">No Ratings
 					<% else %>
 					<% if %>
 					<% case item[4].split[0].to_f
-						when 4.7..5 %><td><img src="/images/5star.png"><%= item[4] %></td>
-					<%when 4.2..4.6 %><td><img src="/images/4.5star.png"><%= item[4] %></td>
-					<%when 3.8..4.1 %><td><img src="/images/4star.png"><%= item[4] %></td>
-					<%when 3.2..3.7 %><td><img src="/images/3.5star.png"><%= item[4] %></td>
-					<%when 2.8..3.1 %><td><img src="/images/3star.png"><%= item[4] %></td>
-					<%when 2.2..2.7 %><td><img src="/images/2.5star.png"><%= item[4] %></td>
-					<%when 1.8..2.1 %><td><img src="/images/2star.png"><%= item[4] %></td>
-					<%when 1.2..1.7 %><td><img src="/images/1.5star.png"><%= item[4] %></td>
-					<%when 0.7..1.1 %><td><img src="/images/1star.png"><%= item[4] %></td>
-					<%when 0..0.6 %><td><img src="/images/0.5star.png"><%= item[4] %></td>
+						when 4.7..5 %><img class="starimg" src="/images/5star.png"><br><%= item[4].sub!("stars", "")%>
+					<%when 4.2..4.6 %><img class="starimg" src="/images/4.5star.png"><br><%= item[4].sub!("stars", "")%>
+					<%when 3.8..4.1 %><img class="starimg" src="/images/4star.png"><br><%= item[4].sub!("stars", "")%>
+					<%when 3.2..3.7 %><img class="starimg" src="/images/3.5star.png"><br><%= item[4].sub!("stars", "")%>
+					<%when 2.8..3.1 %><img class="starimg" src="/images/3star.png"><br><%= item[4].sub!("stars", "")%>
+					<%when 2.2..2.7 %><img class="starimg" src="/images/2.5star.png"><br><%= item[4].sub!("stars", "")%>
+					<%when 1.8..2.1 %><img class="starimg" src="/images/2star.png"><br><%= item[4].sub!("stars", "")%>
+					<%when 1.2..1.7 %><img class="starimg" src="/images/1.5star.png"><br><%= item[4].sub!("stars", "")%>
+					<%when 0.7..1.1 %><img class="starimg" src="/images/1star.png"><%= item[4].sub!("stars", "")%>
+					<%when 0..0.6 %><img class="starimg" src="/images/0.5star.png"><%= item[4].sub!("stars", "")%>
 					<% end %>
 					<% end %>
 					<% end %>
 					<!-- this is how we get only the first chunk of review: <p><%= item[4].split[0]%></p> -->
-				</tr>
+					</div>										
 				<% end %>
-			</table>
+				</div>
 			<!-- Walmart -->
-			<table>		      	
-			   	<tr>
-			   		<th></th>	
-					<th>Item</th>
-					<th>Walmart Price</th>
-					<th>Walmart Rating</th>
-				</tr>
-				<% @walmart.each do |item| %>		
-				<tr>
-					<% item[2].each do |image| %>
-					<td><a href="http://www.walmart.com<%= item[3][0] %>"><img src="<%= image %>"></a></td>
-					<% end %>
-					<td><a href="http://www.walmart.com<%= item[3][0]%>"><%= item[0] %></a></td>
-					<td><%= item[1] %></td>
-					<% if item[4].blank? %>
-					<td><img src="/images/0star.png">No Ratings</td>
-					<% else %>
-					<% case item[4].split[0].to_f
-						when 4.7..5 %><td><img src="/images/5star.png"><%= item[4].split[0] %> out of 5 stars</td>
-					<%when 4.2..4.6 %><td><img src="/images/4.5star.png"><%= item[4].split[0] %> out of 5 stars</td>
-					<%when 3.8..4.1 %><td><img src="/images/4star.png"><%= item[4].split[0] %> out of 5 stars</td>
-					<%when 3.2..3.7 %><td><img src="/images/3.5star.png"><%= item[4].split[0] %> out of 5 stars</td>
-					<%when 2.8..3.1 %><td><img src="/images/3star.png"><%= item[4].split[0] %> out of 5 stars</td>
-					<%when 2.2..2.7 %><td><img src="/images/2.5star.png"><%= item[4].split[0] %> out of 5 stars</td>
-					<%when 1.8..2.1 %><td><img src="/images/2star.png"><%= item[4].split[0] %> out of 5 stars</td>
-					<%when 1.2..1.7 %><td><img src="/images/1.5star.png"><%= item[4].split[0] %> out of 5 stars</td>
-					<%when 0.7..1.1 %><td><img src="/images/1star.png"><%= item[4].split[0] %> out of 5 stars</td>
-					<%when 0..0.6 %><td><img src="/images/0.5star.png"><%= item[4].split[0] %> out of 5 stars</td>
-					<% end %>
-					<% end %>
-				</tr>
+			<h2 class="store-title">Walmart</h2>
+			<div class="row">
+				<% @walmart.each do |item| %>
+					<div class="col-md-4">		
+						<% item[2].each do |image| %>
+						<a href="http://www.walmart.com<%= item[3][0] %>"><img src="<%= image %>"></a>
+						<% end %>
+						<a class="itemtitle" href="http://www.walmart.com<%= item[3][0]%>"><%= item[0].truncate(40, separator: ' ') %></a>
+						<span class="price"><%= item[1] %></span>
+						<% if item[4].blank? %>
+						<img src="/images/0star.png">No Ratings
+						<% else %>
+						<% case item[4].split[0].to_f
+							when 4.7..5 %><img src="/images/5star.png"><%= item[4].split[0] %> out of 5
+						<%when 4.2..4.6 %><img src="/images/4.5star.png"><%= item[4].split[0] %> out of 5
+						<%when 3.8..4.1 %><img src="/images/4star.png"><%= item[4].split[0] %> out of 5
+						<%when 3.2..3.7 %><img src="/images/3.5star.png"><%= item[4].split[0] %> out of 5
+						<%when 2.8..3.1 %><img src="/images/3star.png"><%= item[4].split[0] %> out of 5
+						<%when 2.2..2.7 %><img src="/images/2.5star.png"><%= item[4].split[0] %> out of 5
+						<%when 1.8..2.1 %><img src="/images/2star.png"><%= item[4].split[0] %> out of 5
+						<%when 1.2..1.7 %><img src="/images/1.5star.png"><%= item[4].split[0] %> out of 5
+						<%when 0.7..1.1 %><img src="/images/1star.png"><%= item[4].split[0] %> out of 5
+						<%when 0..0.6 %><img src="/images/0.5star.png"><%= item[4].split[0] %> out of 5
+						<% end %>
+						<% end %>
+						</div>
 				<% end %>
-			</table>
+			</div>
 			<!-- Bestbuy -->
-			<table>		      	
-			   	<tr>
-				   	<th></th>
-					<th>Item</th>
-					<th>Bestbuy Price</th>
-					<th>Bestbuy Rating</th>
-				</tr>
+			<h2 class="store-title">Bestbuy</h2>
+			<div class="row">
 				<% @bestbuy.each do |item| %>
-				<tr>					
-					<% item[2].each do |image| %>
-					<td><a href="http://www.bestbuy.com<%= item[3][0] %>"><img src="<%= image %>"></a></td>
-					<% end %>				
-					<td><a href="http://www.bestbuy.com<%= item[3][0]%>"><%= item[0] %></a></td>
-					<td><%= item[1] %></td>
-					<% if item[4].blank? %>
-					<td><img src="/images/0star.png">No Ratings</td>
-					<% else %>
-					<% case item[4].split[0].to_f
-						when 4.7..5 %><td><img src="/images/5star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 4.2..4.6 %><td><img src="/images/4.5star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 3.8..4.1 %><td><img src="/images/4star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 3.2..3.7 %><td><img src="/images/3.5star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 2.8..3.1 %><td><img src="/images/3star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 2.2..2.7 %><td><img src="/images/2.5star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 1.8..2.1 %><td><img src="/images/2star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 1.2..1.7 %><td><img src="/images/1.5star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 0.7..1.1 %><td><img src="/images/1star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 0..0.6 %><td><img src="/images/0.5star.png"><%= item[4] %> out of 5 stars</td>
-					<% else %><td><img src="/images/0star.png">No Ratings</td>
-					<% end %>
-					<% end %>
-				</tr>
+					<div class="col-md-4">
+						<% item[2].each do |image| %>
+						<a href="http://www.bestbuy.com<%= item[3][0] %>"><img src="<%= image %>"></a>
+						<% end %>				
+						<a class="itemtitle" href="http://www.bestbuy.com<%= item[3][0]%>"><%= item[0] %></a>
+						<span class="price"><%= item[1] %></span>
+						<% if item[4].blank? %>
+						<img src="/images/0star.png">No Ratings
+						<% else %>
+						<% case item[4].split[0].to_f
+							when 4.7..5 %><img src="/images/5star.png"><%= item[4] %> out of 5 
+						<%when 4.2..4.6 %><img src="/images/4.5star.png"><%= item[4] %> out of 5 
+						<%when 3.8..4.1 %><img src="/images/4star.png"><%= item[4] %> out of 5 
+						<%when 3.2..3.7 %><img src="/images/3.5star.png"><%= item[4] %> out of 5 
+						<%when 2.8..3.1 %><img src="/images/3star.png"><%= item[4] %> out of 5 
+						<%when 2.2..2.7 %><img src="/images/2.5star.png"><%= item[4] %> out of 5 
+						<%when 1.8..2.1 %><img src="/images/2star.png"><%= item[4] %> out of 5 
+						<%when 1.2..1.7 %><img src="/images/1.5star.png"><%= item[4] %> out of 5 
+						<%when 0.7..1.1 %><img src="/images/1star.png"><%= item[4] %> out of 5 
+						<%when 0..0.6 %><img src="/images/0.5star.png"><%= item[4] %> out of 5 
+						<% else %><img src="/images/0star.png">No Ratings
+						<% end %>
+						<% end %>
+					</div>					
 				<% end %>
-			</table>
+			</div>
 			<!-- Newegg -->
-			<table>		      	
-			   	<tr>
-				   	<th></th>
-					<th>Item</th>
-					<th>Newegg Price</th>
-					<th>Newegg Rating</th>
-					<th></th>
-				</tr>
+			<h2 class="store-title">Newegg</h2>
+			<div class="row">
 				<% @newegg.each do |item| %>
-				<tr>					
+				<div class="col-md-4">
 					<% item[2].each do |image| %>
-					<td><a href="<%= item[3][0] %>"><img src="<%= image %>"></a></td>
+					<a href="<%= item[3][0] %>"><img src="<%= image %>"></a>
 					<% end %>					
-					<td><a href="<%= item[3][0]%>"><%= item[0] %></a></td>
-					<td><%= item[1] %></td>
+					<a class="itemtitle" href="<%= item[3][0]%>"><%= item[0] %></a>
+					<span class="price"><%= item[1].gsub(/["from", "–"]/, "") %></span>
 					<% if item[4].blank? %>
-					<td><img src="/images/0star.png">No Ratings</td>
+					<img src="/images/0star.png">No Ratings
 					<% else %>
 					<% item[4].each do |t| %>
 					<% case t.split[2].to_f
-						when 5 %><td><img src="/images/5star.png"><%= t.split[2] %> out of 5 stars</td>
-					<%when 4 %><td><img src="/images/4star.png"><%= t.split[2] %> out of 5 stars</td>
-					<%when 3 %><td><img src="/images/3star.png"><%= t.split[2] %> out of 5 stars</td>
-					<%when 2 %><td><img src="/images/2star.png"><%= t.split[2] %> out of 5 stars</td>
-					<%when 1 %><td><img src="/images/1star.png"><%= t.split[2] %> out of 5 stars</td>
+						when 5 %><img src="/images/5star.png"><%= t.split[2] %> out of 5
+					<%when 4 %><img src="/images/4star.png"><%= t.split[2] %> out of 5
+					<%when 3 %><img src="/images/3star.png"><%= t.split[2] %> out of 5
+					<%when 2 %><img src="/images/2star.png"><%= t.split[2] %> out of 5
+					<%when 1 %><img src="/images/1star.png"><%= t.split[2] %> out of 5
 					<% end %>
 					<% end %>
 					<% end %>
-				</tr>
+				</div>				
 				<% end %>
-			</table>
+			</div>
 			<!-- Target -->
-			<table>		      	
-			   	<tr>
-			   		<th></th>
-			   		<th></th>
-					<th>Item</th>
-					<th>Target Price</th>
-					<th>Target Rating</th>
-					<th></th>
-				</tr>
+			<h2 class="store-title">Target</h2>
+			<div class="row">
 				<% @target.each do |item| %>
-				<tr>					
-					<% item[2].each do |image| %>
-					<td><a href="<%= item[3][0] %>"><img src="<%= image %>"></a></td>
-					<% end %>				
-					<td><a href="<%= item[3][0]%>"><%= item[0] %></a></td>
-					<td><%= item[1] %></td>
-					<% if item[4].blank? %>
-					<td><img src="/images/0star.png">No Ratings</td>
-					<% else %>
-					<% case item[4].split[0].to_f
-						when 4.7..5 %><td><img src="/images/5star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 4.2..4.6 %><td><img src="/images/4.5star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 3.8..4.1 %><td><img src="/images/4star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 3.2..3.7 %><td><img src="/images/3.5star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 2.8..3.1 %><td><img src="/images/3star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 2.2..2.7 %><td><img src="/images/2.5star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 1.8..2.1 %><td><img src="/images/2star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 1.2..1.7 %><td><img src="/images/1.5star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 0.7..1.1 %><td><img src="/images/1star.png"><%= item[4] %> out of 5 stars</td>
-					<%when 0..0.6 %><td><img src="/images/0.5star.png"><%= item[4] %> out of 5 stars</td>
-					<% end %>
-					<% end %>
-				</tr>
+					<div class="col-md-4">
+						<% if item[2].blank? %>
+							<img src="/images/no_image.jpeg">
+						<% end %>
+						<% item[2].each do |image| %>
+							<a href="<%= item[3][0] %>"><img src="<%= image %>"></a>
+						<% end %>				
+						<a class="itemtitle" href="<%= item[3][0]%>"><%= item[0] %></a>
+						<span class="price"><%= item[1].sub!("Sale Price", "") %></span>
+						<% if item[4].blank? %>
+						<img src="/images/0star.png">No Ratings
+						<% else %>
+						<% case item[4].split[0].to_f
+							when 4.7..5 %><img src="/images/5star.png"><%= item[4] %> out of 5 stars
+						<%when 4.2..4.6 %><img src="/images/4.5star.png"><%= item[4] %> out of 5 stars
+						<%when 3.8..4.1 %><img src="/images/4star.png"><%= item[4] %> out of 5 stars
+						<%when 3.2..3.7 %><img src="/images/3.5star.png"><%= item[4] %> out of 5 stars
+						<%when 2.8..3.1 %><img src="/images/3star.png"><%= item[4] %> out of 5 stars
+						<%when 2.2..2.7 %><img src="/images/2.5star.png"><%= item[4] %> out of 5 stars
+						<%when 1.8..2.1 %><img src="/images/2star.png"><%= item[4] %> out of 5 stars
+						<%when 1.2..1.7 %><img src="/images/1.5star.png"><%= item[4] %> out of 5 stars
+						<%when 0.7..1.1 %><img src="/images/1star.png"><%= item[4] %> out of 5 stars
+						<%when 0..0.6 %><img src="/images/0.5star.png"><%= item[4] %> out of 5 stars
+						<% end %>
+						<% end %>
+					</div>
 				<% end %>
-			</table>
+			</div>
 	</body>
 </html>

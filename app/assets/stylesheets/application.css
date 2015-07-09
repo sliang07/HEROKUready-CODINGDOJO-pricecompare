@@ -35,8 +35,21 @@
     background-size: cover;
     background-attachment: fixed;
 }
-.row{
-    display: inline-block;
+.price{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: black;
+    color: white;
+}
+.col-md-4{
+    margin-bottom: 15px;
+}
+.itemtitle{
+    font-size: 17px;
+}
+.starimg{
+    margin: 0;
 }
 #index{
     text-align: center;
