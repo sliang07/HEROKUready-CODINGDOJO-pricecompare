@@ -3,4 +3,5 @@
 PriceCompare is an HTML parser built on Ruby on Rails that utlizes a rails gem called Nokogiri.
 
 This is the same application as https://github.com/DixithP/PriceCompare
+
 This version is modified for deployment
